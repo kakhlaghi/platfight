@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 15.0f;
+        speed = 20.0f;
         anim = GetComponent<Animator>();
     }
 
@@ -56,12 +56,20 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
         }
+        if(body.velocity.y != 0){
+            anim.SetFloat("fJump", body.velocity.y);
+            anim.SetBool("isJumping", true);
+
+        } else if (body.velocity.y == 0 && anim.GetFloat("fJump") != 0){
+            anim.SetFloat("fJump", 0);
+            anim.SetBool("isJumping", false);
+        }
     }
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
-
+        body.velocity = new Vector2(body.velocity.x/2, speed);
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -81,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-        
+        //anim.SetBool("isAttacking", true);
+        anim.Play("ToadAttack", 0);
     }
 }
