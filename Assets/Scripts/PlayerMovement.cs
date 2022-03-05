@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
+        
         UpdateAnimState();
     }
 
@@ -44,11 +45,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateAnimState()
     {
-        if (horz > 0f)
+        if (horz > 0f && grounded)
         {
             anim.SetBool("isRunning", true);
         }
-        else if (horz < 0f)
+        else if (horz < 0f && grounded)
         {
             anim.SetBool("isRunning", true);
         }
@@ -56,11 +57,11 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
         }
-        if(body.velocity.y != 0){
+        if(body.velocity.y != 0 && !grounded){
             anim.SetFloat("fJump", body.velocity.y);
             anim.SetBool("isJumping", true);
 
-        } else if (body.velocity.y == 0 && anim.GetFloat("fJump") != 0){
+        } else if ((body.velocity.y == 0 && anim.GetFloat("fJump") != 0) || grounded){
             anim.SetFloat("fJump", 0);
             anim.SetBool("isJumping", false);
         }
