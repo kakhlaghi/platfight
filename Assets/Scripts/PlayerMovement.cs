@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float horz = 0f;
     // Start is called before the first frame update
+    private bool isBlocking = false;
+    private bool isAttacking = false;
     void Start()
     {
         speed = 20.0f;
@@ -35,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
+        if(Input.GetKeyDown(KeyCode.C)){
+            Block();
+        } else if(Input.GetKeyUp(KeyCode.C)){
+            UnBlock();
+        }
         
         UpdateAnimState();
     }
@@ -49,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isRunning", true);
         }
-        else if (horz < 0f && grounded)
+        else if (horz < 0f && grounded && !isAttacking)
         {
             anim.SetBool("isRunning", true);
         }
@@ -69,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x/2, speed);
+        body.velocity = new Vector2(body.velocity.x/4, speed);
         
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,5 +99,20 @@ public class PlayerMovement : MonoBehaviour
     {
         //anim.SetBool("isAttacking", true);
         anim.Play("ToadAttack", 0);
+        isAttacking = true;
+    }
+
+    private void Block(){
+        if(isBlocking == false){
+            anim.SetBool("isBlocking", true);
+            isBlocking = true;
+        }
+    }
+
+    private void UnBlock(){
+        if(isBlocking == true){
+            anim.SetBool("isBlocking", false);
+            isBlocking = false;
+        }
     }
 }
