@@ -11,10 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     Vector2 moveInput;
     // Start is called before the first frame update
-    private bool isBlocking = false;
-    private bool isAttacking = false;
     private BoxCollider2D playerFeetCollider;
-    
+    //
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -84,40 +82,27 @@ public class PlayerMovement : MonoBehaviour
         } 
         
     }
-     void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground")
-        {
-            grounded = true;
-        } 
-    }
 
-     void OnCollisionExit2D(Collision2D collision)
+    void OnAttack(InputValue value)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            grounded = false;
+        if(value.isPressed){
+            anim.SetBool("isAttacking", true);
+            //isBlocking = true;
         }
-    }
-
-     void OnAttack()
-    {
-        //anim.SetBool("isAttacking", true);
-        anim.Play("ToadAttack", 0);
-        isAttacking = true;
+        if(!value.isPressed){
+            anim.SetBool("isAttacking", false);
+            //isBlocking = false;
+        }
     }
 
      void OnBlock(InputValue value){
-        if(isBlocking == false){
+        if(value.isPressed){
             anim.SetBool("isBlocking", true);
-            isBlocking = true;
+            //isBlocking = true;
         }
-    }
-
-     void OnUnBlock(InputValue value){
-        if(isBlocking == true){
+        if(!value.isPressed){
             anim.SetBool("isBlocking", false);
-            isBlocking = false;
+            //isBlocking = false;
         }
     }
 }
