@@ -1,85 +1,90 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private bool grounded;
+    [SerializeField] private float jumpSpeed;
+
     private Rigidbody2D body;
     private Animator anim;
-    private float horz = 0f;
+    Vector2 moveInput;
     // Start is called before the first frame update
     private bool isBlocking = false;
     private bool isAttacking = false;
+    private BoxCollider2D playerFeetCollider;
+    
     void Start()
     {
-        speed = 20.0f;
+        body = GetComponent<Rigidbody2D>();
+        speed = 15.0f;
+        jumpSpeed = 20.0f;
         anim = GetComponent<Animator>();
+        playerFeetCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horz = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horz*speed,body.velocity.y);
-        if (Input.GetKey(KeyCode.Z) && grounded)
-        {
-            Jump();
-        }
-        if(horz > 0.01f)
-        {
-            transform.localScale = Vector3.one;
-        } else if(horz < -0.01f)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        if (Input.GetKey(KeyCode.X))
-        {
-            Attack();
-        }
-        if(Input.GetKeyDown(KeyCode.C)){
-            Block();
-        } else if(Input.GetKeyUp(KeyCode.C)){
-            UnBlock();
-        }
-        
-        UpdateAnimState();
+        Run();
+        FlipHorz();
+        Fall();
+       
     }
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
     }
-    private void UpdateAnimState()
-    {
-        if (horz > 0f && grounded)
-        {
-            anim.SetBool("isRunning", true);
-        }
-        else if (horz < 0f && grounded && !isAttacking)
-        {
-            anim.SetBool("isRunning", true);
-        }
-        else
-        {
-            anim.SetBool("isRunning", false);
-        }
-        if(body.velocity.y != 0 && !grounded){
-            anim.SetFloat("fJump", body.velocity.y);
-            anim.SetBool("isJumping", true);
 
-        } else if ((body.velocity.y == 0 && anim.GetFloat("fJump") != 0) || grounded){
-            anim.SetFloat("fJump", 0);
-            anim.SetBool("isJumping", false);
+    void OnMove(InputValue value){
+        moveInput = value.Get<Vector2>();
+    }
+
+    void Run(){
+        bool playerHasHSpeed = Mathf.Abs(body.velocity.x) > Mathf.Epsilon;
+
+        Vector2 playerVelocity = new Vector2(moveInput.x*speed,body.velocity.y);
+        body.velocity = playerVelocity;
+        
+
+        anim.SetBool("isRunning", playerHasHSpeed);
+
+    }
+
+    void FlipHorz(){
+        bool playerHasHSpeed = Mathf.Abs(body.velocity.x) > Mathf.Epsilon;
+        if(playerHasHSpeed){
+            transform.localScale = new Vector2 (Mathf.Sign(body.velocity.x), 1f);
+
         }
     }
 
-    private void Jump()
+    void Fall(){
+        bool playerHasNegVSpeed = body.velocity.y < Mathf.Epsilon;
+        if(playerHasNegVSpeed && !playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))){
+            anim.SetBool("isJumping", false); 
+            anim.SetBool("isFalling", true);
+        } else {
+            anim.SetBool("isFalling", false);
+        }
+    }
+
+    void OnJump(InputValue value)
     {
-        body.velocity = new Vector2(body.velocity.x/4, speed);
+
+        if(!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))){
+            return;
+        }
+       if(value.isPressed)
+        {
+            body.velocity = new Vector2(body.velocity.x/4, jumpSpeed);
+            anim.SetBool("isJumping", true);
+        } 
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
@@ -87,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         } 
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
@@ -95,21 +100,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Attack()
+     void OnAttack()
     {
         //anim.SetBool("isAttacking", true);
         anim.Play("ToadAttack", 0);
         isAttacking = true;
     }
 
-    private void Block(){
+     void OnBlock(InputValue value){
         if(isBlocking == false){
             anim.SetBool("isBlocking", true);
             isBlocking = true;
         }
     }
 
-    private void UnBlock(){
+     void OnUnBlock(InputValue value){
         if(isBlocking == true){
             anim.SetBool("isBlocking", false);
             isBlocking = false;
