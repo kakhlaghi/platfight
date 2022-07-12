@@ -6,12 +6,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] Vector2 deathkick = new Vector2(10f, 10f);
 
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
+    bool isAlive = true;
     private Rigidbody2D body;
     private Animator anim;
     Vector2 moveInput;
+    int health = 3;
     // Start is called before the first frame update
     private BoxCollider2D playerFeetCollider;
+
     //
     void Start()
     {
@@ -25,9 +33,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive){
+            return;
+        }
         Run();
         FlipHorz();
         Fall();
+        Die();
        
     }
 
@@ -37,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnMove(InputValue value){
+        if (!isAlive){
+            return;
+        }
         moveInput = value.Get<Vector2>();
     }
 
@@ -71,7 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-
+        if (!isAlive){
+            return;
+        }
         if(!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))){
             return;
         }
@@ -85,8 +102,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
+        if (!isAlive){
+            return;
+        }
         if(value.isPressed){
             anim.SetBool("isAttacking", true);
+            Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
             //isBlocking = true;
         }
         if(!value.isPressed){
@@ -96,6 +118,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
      void OnBlock(InputValue value){
+        if (!isAlive){
+            return;
+        }
         if(value.isPressed){
             anim.SetBool("isBlocking", true);
             //isBlocking = true;
@@ -103,6 +128,13 @@ public class PlayerMovement : MonoBehaviour
         if(!value.isPressed){
             anim.SetBool("isBlocking", false);
             //isBlocking = false;
+        }
+    }
+
+    void Die(){
+        if(health == 0){
+            isAlive = false;
+            body.velocity = deathkick;
         }
     }
 }
