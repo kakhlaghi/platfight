@@ -125,6 +125,11 @@ MonoBehaviour:
   speed: 0
   jumpSpeed: 0
   deathkick: {x: 10, y: 10}
+  attackPoint: {fileID: 0}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &5550493361822190560
 Animator:
   serializedVersion: 3
