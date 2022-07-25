@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
     public CharacterDatabase characterDB;
     public Text nameText;
-
+    public Animator animCtrl;
     public SpriteRenderer artSprite;
 
     private int selectedOption = 0;
 
     void Start(){
+        if(!PlayerPrefs.HasKey("selectedOption")){
+            selectedOption = 0;
+        } else {
+            Load();
+        }
         UpdateCharacter(selectedOption);
 
     }
@@ -26,6 +32,7 @@ public class CharacterManager : MonoBehaviour
             selectedOption = 0;
         }
         UpdateCharacter(selectedOption);
+        Save();
 
     }
 
@@ -38,6 +45,7 @@ public class CharacterManager : MonoBehaviour
         }
 
         UpdateCharacter(selectedOption);
+        Save();
     }
 
     private void UpdateCharacter (int selectedOption){
@@ -45,5 +53,17 @@ public class CharacterManager : MonoBehaviour
         CharacterChoiceObj character = characterDB.GetCharacter(selectedOption);
         artSprite.sprite = character.characterSprite;
         nameText.text = character.characterName;
+    }
+
+    private void Load(){
+        selectedOption = PlayerPrefs.GetInt("selectedOption");
+    }
+
+    private void Save(){
+        PlayerPrefs.SetInt("selectedOption", selectedOption);
+    }
+
+    public void ChangeScene(int SceneId){
+        SceneManager.LoadScene(SceneId);
     }
 }
