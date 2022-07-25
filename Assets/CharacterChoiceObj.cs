@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterChoiceObj : MonoBehaviour
+[System.Serializable]
+public class CharacterChoiceObj
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public string characterName;
+   public Sprite characterSprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
