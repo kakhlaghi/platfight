@@ -15,9 +15,13 @@ MonoBehaviour:
   character:
   - characterName: Toad
     characterSprite: {fileID: 21300000, guid: 33d84c5232f07e54495501be49878b8e, type: 3}
+    characterAnimationCtrl: {fileID: 9100000, guid: da29cbe4826ad3745916e5a789ca1fc2, type: 2}
   - characterName: Dog
     characterSprite: {fileID: 21300000, guid: 891633cc270087b4a80678ed642fbfca, type: 3}
+    characterAnimationCtrl: {fileID: 9100000, guid: 6868a356529e5cf46983e49fb34c981c, type: 2}
   - characterName: Spear
     characterSprite: {fileID: 21300000, guid: d9fbe838ef6a49c44abd75bf256f834a, type: 3}
+    characterAnimationCtrl: {fileID: 0}
   - characterName: Bow
     characterSprite: {fileID: 21300000, guid: 3361702cc47ad694492a3cc71f62d210, type: 3}
+    characterAnimationCtrl: {fileID: 0}

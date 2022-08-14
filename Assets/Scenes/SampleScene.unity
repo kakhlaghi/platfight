@@ -24090,6 +24090,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5550493361822190591, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 89577aa838e42b94ca540adcb4787004, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
 --- !u!4 &5550493363489157203 stripped
@@ -24115,4 +24119,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterDB: {fileID: 11400000, guid: 51669510e14638643a1d0dbdee8b5c85, type: 2}
-  artSprite: {fileID: 0}
+  artSprite: {fileID: 5550493363489157206}
+  animator: {fileID: 5550493363489157211}
+--- !u!212 &5550493363489157206 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5550493361822190591, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
+  m_PrefabInstance: {fileID: 5550493363489157202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5550493363489157211 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5550493361822190560, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
+  m_PrefabInstance: {fileID: 5550493363489157202}
+  m_PrefabAsset: {fileID: 0}

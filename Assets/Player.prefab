@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDB: {fileID: 11400000, guid: 51669510e14638643a1d0dbdee8b5c85, type: 2}
   artSprite: {fileID: 5550493361822190591}
+  animator: {fileID: 5550493361822190560}
 --- !u!114 &5550493361822190566
 MonoBehaviour:
   m_ObjectHideFlags: 0
