@@ -40,7 +40,13 @@ public class PlayerMovement : MonoBehaviour
         FlipHorz();
         Fall();
         Die();
+        IsGounded();
        
+    }
+
+    private void IsGounded(){
+        //I fucking hate that im using this
+        anim.SetBool("Grounded", playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")));
     }
 
     private void Awake()
@@ -62,7 +68,13 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = playerVelocity;
         
 
-        anim.SetBool("isRunning", playerHasHSpeed);
+        //anim.SetBool("isRunning", playerHasHSpeed);
+        if(playerHasHSpeed){
+            anim.SetInteger("AnimState", 1);
+            Debug.Log(anim.GetInteger("AnimState"));
+        } else {
+            anim.SetInteger("AnimState", 0);
+        }
 
     }
 
@@ -79,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if(playerHasNegVSpeed && !playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))){
             anim.SetBool("isJumping", false); 
             anim.SetBool("isFalling", true);
+            anim.SetFloat("AirSpeedY", body.velocity.y);
         } else {
             anim.SetBool("isFalling", false);
         }

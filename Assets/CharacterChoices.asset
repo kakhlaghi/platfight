@@ -28,6 +28,9 @@ MonoBehaviour:
     - m_Name: Ninja
       m_Hash: -2145280651
       m_Sprite: {fileID: 0}
+    - m_Name: Hero
+      m_Hash: -235093576
+      m_Sprite: {fileID: 0}
   - m_Name: New Category 1
     m_Hash: 30752789
     m_CategoryList: []
