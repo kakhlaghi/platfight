@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Attack2",
+                    "type": "Button",
+                    "id": "31701896-e410-4318-befc-f04271a8191c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack3",
+                    "type": "Button",
+                    "id": "411ae737-07f1-49a2-bd68-8c8a31b47dc8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -306,11 +324,33 @@
                 {
                     "name": "",
                     "id": "67108a1a-c9f0-4b00-adc1-fd3fc92d89ec",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3a64b2e-7256-4264-a058-5709a0904165",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "387a974f-aa60-49e8-bd0b-8c9105ce3e7c",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         //anim.SetBool("isRunning", playerHasHSpeed);
         if(playerHasHSpeed){
             anim.SetInteger("AnimState", 1);
-            Debug.Log(anim.GetInteger("AnimState"));
         } else {
             anim.SetInteger("AnimState", 0);
         }
@@ -119,7 +118,32 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         if(value.isPressed){
+           // anim.SetBool("isAttacking", true);
+            anim.SetTrigger("Attack1");
+
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log(enemy);
+                Debug.Log("We Hit");
+            }
+            //isBlocking = true;
+        }
+        if(!value.isPressed){
+          //  anim.SetBool("isAttacking", false);
+            anim.ResetTrigger("Attack1");
+
+            //isBlocking = false;
+        }
+    }
+
+    void OnAttack2(InputValue value){
+         if (!isAlive){
+            return;
+        }
+        if(value.isPressed){
             anim.SetBool("isAttacking", true);
+            anim.SetTrigger("Attack2");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
@@ -129,6 +153,30 @@ public class PlayerMovement : MonoBehaviour
         }
         if(!value.isPressed){
             anim.SetBool("isAttacking", false);
+            anim.ResetTrigger("Attack2");
+
+            //isBlocking = false;
+        }
+    }
+
+     void OnAttack3(InputValue value){
+         if (!isAlive){
+            return;
+        }
+        if(value.isPressed){
+            //anim.SetBool("isAttacking", true);
+            anim.SetTrigger("Attack3");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("We Hit");
+            }
+            //isBlocking = true;
+        }
+        if(!value.isPressed){
+            //anim.SetBool("isAttacking", false);
+            anim.ResetTrigger("Attack3");
+
             //isBlocking = false;
         }
     }
@@ -152,5 +200,12 @@ public class PlayerMovement : MonoBehaviour
             isAlive = false;
             body.velocity = deathkick;
         }
+    }
+
+    void OnDrawGizmosSelected(){
+        if(attackPoint == null){
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

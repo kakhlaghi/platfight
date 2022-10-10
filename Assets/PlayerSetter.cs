@@ -25,8 +25,6 @@ public class PlayerSetter : MonoBehaviour
     private void UpdateCharacter (int selectedOption){
         Debug.Log(selectedOption);
         CharacterChoiceObj character = characterDB.GetCharacter(selectedOption);
-        Debug.Log(character.characterName);
-        Debug.Log(character.characterAnimationCtrl);
 
         artSprite.sprite = character.characterSprite;
         animator.runtimeAnimatorController = character.characterAnimationCtrl as RuntimeAnimatorController;
