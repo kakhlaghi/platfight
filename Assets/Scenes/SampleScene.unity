@@ -151,6 +151,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1453995755}
   m_RootOrder: 0
@@ -213,7 +214,7 @@ GameObject:
   - component: {fileID: 453453870}
   - component: {fileID: 453453869}
   - component: {fileID: 453453868}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,6 +258,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -307,6 +309,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.58, y: 1.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -425,6 +428,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.16, y: 1.62, z: -10}
   m_LocalScale: {x: 10, y: 20, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -465,6 +469,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1188767719}
   m_RootOrder: 0
@@ -480,6 +485,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -2687,6 +2693,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.16, y: 1.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1265105259}
   m_Father: {fileID: 0}
@@ -2748,6 +2755,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 720406167}
   - {fileID: 1301451687}
@@ -2784,6 +2792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2816,6 +2825,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2849,6 +2859,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.815314, y: -0.981999, z: 13.723682}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1062566224}
   m_RootOrder: 0
@@ -2964,6 +2975,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1188767719}
   m_RootOrder: 1
@@ -2979,6 +2991,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -24126,6 +24139,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 409788995}
   m_Father: {fileID: 0}
@@ -24143,6 +24157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5550493361822190560, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3c2a5b7097b0fe44394328c0bdb9252e, type: 2}
     - target: {fileID: 5550493361822190561, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
       propertyPath: m_Size.x
       value: 2.1181698
@@ -24177,7 +24195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5550493361822190563, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
       propertyPath: enemyLayers.m_Bits
-      value: 128
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5550493361822190588, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
       propertyPath: m_RootOrder
@@ -24264,35 +24282,5 @@ PrefabInstance:
 --- !u!4 &5550493363489157203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5550493361822190588, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
-  m_PrefabInstance: {fileID: 5550493363489157202}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5550493363489157204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5550493361822190590, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
-  m_PrefabInstance: {fileID: 5550493363489157202}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5550493363489157205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550493363489157204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86c7718d67ff114ebce418616d5e4c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterDB: {fileID: 11400000, guid: 51669510e14638643a1d0dbdee8b5c85, type: 2}
-  artSprite: {fileID: 5550493363489157206}
-  animator: {fileID: 5550493363489157211}
---- !u!212 &5550493363489157206 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5550493361822190591, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
-  m_PrefabInstance: {fileID: 5550493363489157202}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &5550493363489157211 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5550493361822190560, guid: 5d5acf364f6a68b4283bbdb3ef81fba0, type: 3}
   m_PrefabInstance: {fileID: 5550493363489157202}
   m_PrefabAsset: {fileID: 0}
