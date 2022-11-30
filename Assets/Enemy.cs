@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     public int maxHealth = 100;
     int currentHealth;
-    public PlayerMovement charMove;
+    //public PlayerMovement charMove;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     public void Die()
     {
-        charMove.Die();
+        Debug.Log("Dying");
+        //charMove.Die();
     }
-
 }

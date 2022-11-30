@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipHorz();
         Fall();
-        Die();
+       // Die();
         IsGounded();
        
     }
@@ -142,17 +142,20 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         if(value.isPressed){
-            anim.SetBool("isAttacking", true);
+            //anim.SetBool("isAttacking", true);
             anim.SetTrigger("Attack2");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
+                Debug.Log(enemy);
+
                 Debug.Log("We Hit");
+                enemy.GetComponent<Enemy>().Die();
             }
             //isBlocking = true;
         }
         if(!value.isPressed){
-            anim.SetBool("isAttacking", false);
+           // anim.SetBool("isAttacking", false);
             anim.ResetTrigger("Attack2");
 
             //isBlocking = false;
@@ -169,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
+                Debug.Log(enemy);
                 Debug.Log("We Hit");
             }
             //isBlocking = true;
@@ -195,10 +199,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Die(){
+    public void Die(){
         if(health == 0){
+            Debug.Log("death occuring");
             isAlive = false;
             body.velocity = deathkick;
+            anim.SetTrigger("Death");
         }
     }
 
